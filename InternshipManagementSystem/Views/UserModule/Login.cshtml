@@ -1,0 +1,138 @@
+﻿@model InternshipManagementSystem.Models.UserModel
+@{
+    Layout ="~/Views/Shared/_Layout.cshtml";
+}
+
+    <!--//banner -->
+    <!--/w3_short-->
+
+    <div class="services-breadcrumb_w3layouts">
+        <div class="inner_breadcrumb">
+
+            <ul class="short_w3ls" _w3ls>
+                <li><a @Html.ActionLink("Home", "Index", "Home")</a><span>|</span></li>
+                <li>Login</li>
+            </ul>
+        </div>
+    </div>
+<body>
+    @if (Session["UserId"] != null)
+    {
+        Response.Redirect("~/Home/Index");
+    }
+    <!--//w3_short-->
+    <!-- /inner_content -->
+    <div class="inner_content_info_agileits">
+        <div class="container">
+            <div class="tittle_head_w3ls">
+                <h3 class="tittle three">LogIn to your Account </h3>
+            </div>
+            <div class="inner_sec_grids_info_w3ls">
+                <div class="signin-form">
+                    <div class="login-form-rec">
+                        <form action="#" method="post">
+                            
+                            <div class="editor-label">
+                                @Html.LabelFor(u => u.Username)
+                            </div>
+                            <div class="editor-label">
+                                @Html.TextBoxFor(u => u.Username, new { style = "width:100%;" })
+                                @Html.ValidationMessageFor(u => u.Username)
+                            </div>
+                            <div class="editor-label">
+                                @Html.LabelFor(u => u.Password)
+                            </div>
+                            <div class="editor-field">
+                                @Html.PasswordFor(u => u.Password, new { style = "width:100%;" })
+                                @Html.ValidationMessageFor(u => u.Password)
+                            </div>
+                            <div style="padding-bottom:10px; padding-top:10px;">
+                                <input type="submit" value="Log In" style="width:100%;" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="login-social-grids">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                    </div>
+                    <p><li>@Html.ActionLink("Do you have an account?", "Register", "UserModule")</li></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function GoToRegister() {
+            window.location.href = '/UserModule/Register';
+        }
+    </script>
+</body>
+    <div class="footer_top_agileits">
+        <div class="container">
+            <div class="col-md-4 footer_grid">
+                <h3>About Us</h3>
+                <p>
+                    The main goal of the Internship Management System (InMS) is to manage and monitor the Internship’s student for students in University Malaysia Pahang during their internship duration efficiently.
+                </p>
+            </div>
+            <div class="col-md-4 footer_grid">
+                <h3>Latest News</h3>
+                <ul class="footer_grid_list">
+                    <li>
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        <a href="single.html">Last Submission date for Internship Student on 31/12/2018</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        <a href="single.html">Register with us.</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 footer_grid">
+                <h3>Contact Info</h3>
+                <ul class="address">
+                    <li><i class="fa fa-map-marker" aria-hidden="true"></i>No 1/100, Jalan Yang Benar, <span>Malaysia.</span></li>
+                    <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:futuretech@gmail.com">futuretech@gmail.com</a></li>
+                    <li><i class="fa fa-phone" aria-hidden="true"></i>+6011-22334455</li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="footer_w3ls">
+        <div class="container">
+            <div class="footer_bottom">
+                <div class="col-md-9 footer_bottom_grid">
+                    <div class="footer_bottom1">
+                        <a>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <h2><span class="fa fa-signal" aria-hidden="true"></span> InMs <label>Future Tech</label></h2>
+                        </a>
+                        <p>© 2017 FutureTech. All rights reserved</a></p>
+                    </div>
+                </div>
+                <div class="col-md-3 footer_bottom_grid">
+                    <h6>Follow Us</h6>
+                    <div class="social">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- //footer -->
+
+    <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    <!-- js -->
+    <!-- //password-script -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+

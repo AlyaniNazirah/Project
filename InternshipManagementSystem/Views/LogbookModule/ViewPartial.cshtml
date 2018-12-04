@@ -1,0 +1,136 @@
+﻿@using InternshipManagementSystem.Models
+@model dynamic
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/viewlogbook.css")
+
+<!--//banner -->
+<!--/w3_short-->
+<div class="services-breadcrumb_w3layouts">
+    <div class="inner_breadcrumb">
+
+        <ul class="short_w3ls" _w3ls>
+            <li><a href="index.html">Home</a><span>|</span></li>
+            <li>Logbook</li>
+        </ul>
+    </div>
+</div>
+<div class="tittle_head_w3ls">
+    <h3 class="tittle three">Logbook Record</h3>
+</div>
+<div class="container">
+    <div class="col-lg-12 well">
+        <div class="row">
+            <h3 style="margin-bottom:20px; text-align:center;"><b>Internship Student Details</b></h3>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-3 form-group"></div>
+                    <div class="col-sm-3 form-group">
+                        Matric No. : @Model.User.MatricID
+                    </div>
+                    <div class="col-sm-3 form-group">
+                        Company : @Model.User.CompanyName
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 form-group"></div>
+                    <div class="col-sm-3 form-group">
+                        Full Name : @Model.User.FullName
+                    </div>
+                    <div class="col-sm-3 form-group">
+                        State : @Model.User.State
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table align="center">
+        <tr>
+            <th>Day</th>
+            <th>Title</th>
+            <th>Submission Date</th>
+            <th>Action</th>
+        </tr>
+        @foreach (LogbookModel logbook in Model.Logbooks)
+            {
+            <tr>
+                <td>@logbook.Datetime.DayOfWeek.ToString()</td>
+                <td>@logbook.Title</td>
+                <td>@logbook.Datetime.ToShortDateString()</td>
+                <td>@Html.ActionLink("View", "ViewLogbookStd", "LogbookModule", new { logbook.Id }, new { })</td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="footer_top_agileits">
+    <div class="container">
+        <div class="col-md-4 footer_grid">
+            <h3>About Us</h3>
+            <p>
+                The main goal of the Internship Management System (InMS) is to manage and monitor the Internship’s student for students in University Malaysia Pahang during their internship duration efficiently.
+            </p>
+        </div>
+        <div class="col-md-4 footer_grid">
+            <h3>Latest News</h3>
+            <ul class="footer_grid_list">
+                <li>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a href="single.html">Last Submission date for Internship Student on 31/12/2018</a>
+                </li>
+                <li>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a href="single.html">Register with us.</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4 footer_grid">
+            <h3>Contact Info</h3>
+            <ul class="address">
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i>No 1/100, Jalan Yang Benar, <span>Malaysia.</span></li>
+                <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:futuretech@gmail.com">futuretech@gmail.com</a></li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i>+6011-22334455</li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<div class="footer_w3ls">
+    <div class="container">
+        <div class="footer_bottom">
+            <div class="col-md-9 footer_bottom_grid">
+                <div class="footer_bottom1">
+                    <a>
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <h2><span class="fa fa-signal" aria-hidden="true"></span> InMs <label>Future Tech</label></h2>
+                    </a>
+                    <p>© 2017 FutureTech. All rights reserved</a></p>
+                </div>
+            </div>
+            <div class="col-md-3 footer_bottom_grid">
+                <h6>Follow Us</h6>
+                <div class="social">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+    </div>
+</div>
+<!-- //footer -->
+
+<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+

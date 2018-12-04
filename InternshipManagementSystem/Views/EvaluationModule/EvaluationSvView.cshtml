@@ -1,0 +1,180 @@
+﻿@using InternshipManagementSystem.Models
+@model List<UserModel>
+@{
+    ViewBag.Title = "LogBookSv";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/viewlogbook.css")
+@Scripts.Render("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+@Scripts.Render("/Scripts/jquery.unobtrusive-ajax.js")
+
+
+<!--//banner -->
+<!--/w3_short-->
+<div class="services-breadcrumb_w3layouts">
+    <div class="inner_breadcrumb">
+
+        <ul class="short_w3ls" _w3ls>
+            <li><a href="index.html">Home</a><span>|</span></li>
+            <li>Evaluation</li>
+        </ul>
+    </div>
+</div>
+<div class="tittle_head_w3ls">
+    <h3 class="tittle three">Evaluation</h3>
+</div>
+<h2>LogBookSv</h2>
+<div style="width: 100%; text-align:center; display:block;">
+    Keyword <input type="text" id="txtSearch" /><input type="button" id="btnSearch" value="Search" onclick="StartSearch();" />
+</div>
+
+<script>
+    function StartSearch() {
+        var Text = document.getElementById('txtSearch').value;
+        window.location.href = '/EvaluationModule/EvaluationSvView/' + Text;
+    }
+</script>
+<table>
+    <tr>
+        <th></th>
+        <th>Matric No</th>
+        <th>Full Name</th>
+        <th>Company</th>
+        <th>State</th>
+    </tr>
+    @if (ViewBag.Found == false)
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>@Html.RadioButtonFor(m => m.Count, Model[i].Username) </td>
+                <td>@Model[i].MatricID</td>
+                <td>@Model[i].FullName</td>
+                <td>@Model[i].CompanyName</td>
+                <td>@Model[i].State</td>
+            </tr>
+        }
+    }
+    else
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>@Html.RadioButtonFor(m => m.Count, Model[i].Username) </td>
+                <td>@Model[i].MatricID</td>
+                <td>@Model[i].FullName</td>
+                <td>@Model[i].CompanyName</td>
+                <td>@Model[i].State</td>
+            </tr>
+        }
+    }
+</table>
+
+<div class="col-lg-12 well">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-3 form-group" style="margin-bottom: 10px; text-align: center; font-size:medium">
+                    <input type="button" id="btnViewLogbook" onclick="ViewLogbook()" value="View Logbook" />
+                </div>
+                <div class="col-sm-3 form-group" style="margin-bottom: 10px; text-align: center; font-size:medium">
+                    <input type="button" id="btnLogbookEvaluation" onclick="LogbookEvaluation()" value="Logbook Evaluation" />
+                </div>
+                <div class="col-sm-3 form-group" style="margin-bottom: 10px; text-align: center; font-size:medium">
+                    <input type="button" id="btnViewLogbook" onclick="InternshipEvaluation()" value="Internship Evaluation" />
+                </div>
+                <div class="col-sm-3 form-group" style="margin-bottom: 10px; text-align: center; font-size:medium">
+                    <input type="button" id="btnViewLogbook" onclick="PresentationEvaluation()" value="Presentation Evaluation" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    function ViewLogbook() {
+        var username = document.querySelector('input[name="Count"]:checked').value;
+        window.location.href = '/LogbookModule/ViewStudentLogbook?Username=' + username;
+    }
+    function LogbookEvaluation() {
+        var username = document.querySelector('input[name="Count"]:checked').value;
+        window.location.href = '/EvaluationModule/LogbookEvaluation?Username=' + username;
+    }
+    function InternshipEvaluation() {
+        var username = document.querySelector('input[name="Count"]:checked').value;
+        window.location.href = '/EvaluationModule/InternshipEvaluation?Username=' + username;
+    }
+    function PresentationEvaluation() {
+        var username = document.querySelector('input[name="Count"]:checked').value;
+        window.location.href = '/EvaluationModule/PresentationEvaluation?Username=' + username;
+    }
+</script>
+
+<!-- //inner_content -->
+<!-- footer -->
+<div class="footer_top_agileits">
+    <div class="container">
+        <div class="col-md-4 footer_grid">
+            <h3>About Us</h3>
+            <p>
+                The main goal of the Internship Management System (InMS) is to manage and monitor the Internship’s student for students in University Malaysia Pahang during their internship duration efficiently.
+            </p>
+        </div>
+        <div class="col-md-4 footer_grid">
+            <h3>Latest News</h3>
+            <ul class="footer_grid_list">
+                <li>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a href="single.html">Last Submission date for Internship Student on 31/12/2018</a>
+                </li>
+                <li>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a href="single.html">Register with us.</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4 footer_grid">
+            <h3>Contact Info</h3>
+            <ul class="address">
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i>No 1/100, Jalan Yang Benar, <span>Malaysia.</span></li>
+                <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:futuretech@gmail.com">futuretech@gmail.com</a></li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i>+6011-22334455</li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<div class="footer_w3ls">
+    <div class="container">
+        <div class="footer_bottom">
+            <div class="col-md-9 footer_bottom_grid">
+                <div class="footer_bottom1">
+                    <a>
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <h2><span class="fa fa-signal" aria-hidden="true"></span> InMs <label>Future Tech</label></h2>
+                    </a>
+                    <p>© 2017 FutureTech. All rights reserved</a></p>
+                </div>
+            </div>
+            <div class="col-md-3 footer_bottom_grid">
+                <h6>Follow Us</h6>
+                <div class="social">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+    </div>
+</div>
+<!-- //footer -->
+
+<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>

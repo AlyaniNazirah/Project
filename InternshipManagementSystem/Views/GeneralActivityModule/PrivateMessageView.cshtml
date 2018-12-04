@@ -1,0 +1,157 @@
+﻿@model InternshipManagementSystem.Models.MyViewModel
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+<!--//banner -->
+<!--/w3_short-->
+<div class="services-breadcrumb_w3layouts">
+    <div class="inner_breadcrumb">
+
+        <ul class="short_w3ls" _w3ls>
+            <li><a href="index.html">Home</a><span>|</span></li>
+            <li>Private Message</li>
+        </ul>
+    </div>
+</div>
+<div class="tittle_head_w3ls">
+    <h3 class="tittle three">Private Message</h3>
+</div>
+<h3>@ViewBag.FullName</h3>
+<div id="scrolldiv" style="width:50%; height:350px; overflow-x:hidden; overflow:auto;">
+
+    <table style="width:100%;">
+
+        @foreach (var item in Model.PrivateMessageList)
+        {
+            <tr>
+                <td style="width:95%">
+                    @{
+                        if (ViewBag.TargetUser == item.Sender)
+                        {
+                            <div style="display:inline-block; padding-left:10px;">
+                                <div style="background-color:#d2d9dd; width:auto; padding-right:10px; padding-left:10px; border-top-left-radius:8px; border-top-right-radius:8px;">
+                                    @Html.Label(Convert.ToString(item.Datetime))
+                                </div>
+                                <div style="background-color:#d2d9dd; width:auto; padding-right:10px; padding-left:10px; border-bottom-left-radius:8px; border-bottom-right-radius:8px;">
+                                    <div>@Html.Raw(item.Message)</div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="text-align: right; padding-right:5px; display:inline-block; float:right;">
+                                <div style="background-color:#72b1ff; width:auto; padding-right:10px; padding-left:10px; border-top-left-radius:8px; border-top-right-radius:8px;">
+                                    @Html.Label(Convert.ToString(item.Datetime))<span style="font-weight:bold;"> (You)</span>
+                                </div>
+                                <div style="background-color:#72b1ff; width:auto; padding-right:10px; padding-left:10px; border-bottom-left-radius:8px; border-bottom-right-radius:8px;">
+                                    <div>
+                                        @Html.Raw(item.Message)
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+                        }
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script>
+    $("#scrolldiv").animate({ scrollTop: $("#scrolldiv")[0].scrollHeight }, 0);
+
+</script>
+
+<section style="display:flex; width:50%;">
+    @using (Html.BeginForm("PrivateMessageView", "GeneralActivityModule", FormMethod.Post, new { style = "width: 100%;" }))
+    {
+
+        <div style="width:100%; height:100px;">
+            @Html.TextAreaFor(m => m.PrivateMessage.Message, new { placeholder = "Reply message...", style = "border:solid; border-width:1px; border-color:darkgrey; max-width: 100%", @cols = 90, @rows = 4 })
+            @Html.HiddenFor(m => m.PrivateMessage.Receiver)
+            @Html.HiddenFor(m => m.PrivateMessage.Sender)
+        </div>
+        <br />
+        <div style="width:100px; overflow:hidden; display:inline-block;">
+            <button type="submit" id="my-button" onclick="location.href='@Url.Action("PrivateMessageView", "GeneralActivityModule")' " style="background-color:lightgrey; box-shadow:none; border:none; font-size:medium; width:auto; text-decoration:solid; border-radius:4px;">Send &nbsp;<img src="~/Image/ic_send_black_48dp.png" style="height:20px; width:20px; padding-bottom:3px;" /></button>
+        </div>
+    }
+
+</section>
+<div class="footer_top_agileits">
+    <div class="container">
+        <div class="col-md-4 footer_grid">
+            <h3>About Us</h3>
+            <p>
+                The main goal of the Internship Management System (InMS) is to manage and monitor the Internship’s student for students in University Malaysia Pahang during their internship duration efficiently.
+            </p>
+        </div>
+        <div class="col-md-4 footer_grid">
+            <h3>Latest News</h3>
+            <ul class="footer_grid_list">
+                <li>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a href="single.html">Last Submission date for Internship Student on 31/12/2018</a>
+                </li>
+                <li>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a href="single.html">Register with us.</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4 footer_grid">
+            <h3>Contact Info</h3>
+            <ul class="address">
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i>No 1/100, Jalan Yang Benar, <span>Malaysia.</span></li>
+                <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:futuretech@gmail.com">futuretech@gmail.com</a></li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i>+6011-22334455</li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<div class="footer_w3ls">
+    <div class="container">
+        <div class="footer_bottom">
+            <div class="col-md-9 footer_bottom_grid">
+                <div class="footer_bottom1">
+                    <a>
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <h2><span class="fa fa-signal" aria-hidden="true"></span> InMs <label>Future Tech</label></h2>
+                    </a>
+                    <p>© 2017 FutureTech. All rights reserved</a></p>
+                </div>
+            </div>
+            <div class="col-md-3 footer_bottom_grid">
+                <h6>Follow Us</h6>
+                <div class="social">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+    </div>
+</div>
+<!-- //footer -->
+
+<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
